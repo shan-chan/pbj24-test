@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const daftarTugasContainer = document.getElementById('daftar-tugas');
 
-    // Mengambil data dari file JSON
     fetch('data/minggu-ini.json')
         .then(response => {
             if (!response.ok) {
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            // Kosongkan kontainer (hapus spinner loading)
             daftarTugasContainer.innerHTML = ''; 
 
             if (data.length === 0) {
@@ -19,12 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             data.forEach(tugas => {
-                // Buat variabel kosong untuk menampung HTML tombol
                 let linkButtonHTML = '';
-
-                // Cek apakah properti 'link' ada di data tugas
                 if (tugas.link && tugas.link.trim() !== '') {
-                    // Jika ada, isi variabel dengan HTML untuk tombol
                     linkButtonHTML = `
                         <a href="${tugas.link}" class="btn btn-success btn-sm mt-3" target="_blank" rel="noopener noreferrer">
                             Kumpulkan Tugas
