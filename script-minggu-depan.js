@@ -1,16 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
     const daftarTugasContainer = document.getElementById('daftar-tugas');
 
-    // Mengambil data dari file JSON
-    fetch('data/minggu-depan.json')
+    // Fungsi untuk menerjemahkan teks CSV menjadi data yang bisa dibaca
+    function parseCSV(text) {
+        const lines = text.trim().split('\n');
+        const headers = lines[0].split(',');
+        const result = [];
+        for (let i = 1; i < lines.length; i++) {
+            const obj = {};
+            // Regex sederhana untuk memisahkan berdasarkan koma, tapi mengabaikan koma di dalam tanda kutip
+            const values = lines[i].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
+
+            for (let j = 0; j < headers.length; j++) {
+                let value = values[j] || '';
+                 // Hapus tanda kutip jika ada
+                if (value.startsWith('"') && value.endsWith('"')) {
+                    value = value.slice(1, -1);
+                }
+                obj[headers[j].trim()] = value;
+            }
+            result.push(obj);
+        }
+        return result;
+    }
+
+    // Mengambil data dari file CSV
+    fetch('data/minggu-depan.csv')
         .then(response => {
             if (!response.ok) {
                 throw new Error("Gagal memuat data: " + response.statusText);
             }
-            return response.json();
+            return response.text(); // Ambil sebagai teks biasa, bukan JSON
         })
-        .then(data => {
-            // Kosongkan kontainer (hapus spinner loading)
+        .then(csvText => {
+            const data = parseCSV(csvText); // Terjemahkan teks CSV
             daftarTugasContainer.innerHTML = '';
 
             if (data.length === 0) {
@@ -36,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <p class="card-text flex-grow-1">${tugas.deskripsi}</p>
                                 <div>
                                     <p class="card-deadline mb-0"><strong>Tenggat:</strong> ${tugas.tanggal}</p>
-                                    ${linkButtonHTML} 
+                                    ${linkButtonHTML}
                                 </div>
                             </div>
                         </div>

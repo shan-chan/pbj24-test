@@ -1,14 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
     const daftarTugasContainer = document.getElementById('daftar-tugas');
 
-    fetch('data/minggu-ini.json')
+    // Fungsi untuk menerjemahkan teks CSV menjadi data yang bisa dibaca
+    function parseCSV(text) {
+        const lines = text.trim().split('\n');
+        const headers = lines[0].split(',');
+        const result = [];
+        for (let i = 1; i < lines.length; i++) {
+            const obj = {};
+            // Regex sederhana untuk memisahkan berdasarkan koma, tapi mengabaikan koma di dalam tanda kutip
+            const values = lines[i].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
+            
+            for (let j = 0; j < headers.length; j++) {
+                let value = values[j] || '';
+                // Hapus tanda kutip jika ada
+                if (value.startsWith('"') && value.endsWith('"')) {
+                    value = value.slice(1, -1);
+                }
+                obj[headers[j].trim()] = value;
+            }
+            result.push(obj);
+        }
+        return result;
+    }
+
+    // Mengambil data dari file CSV
+    fetch('data/minggu-ini.csv')
         .then(response => {
             if (!response.ok) {
                 throw new Error("Gagal memuat data: " + response.statusText);
             }
-            return response.json();
+            return response.text(); // Ambil sebagai teks biasa, bukan JSON
         })
-        .then(data => {
+        .then(csvText => {
+            const data = parseCSV(csvText); // Terjemahkan teks CSV
             daftarTugasContainer.innerHTML = ''; 
 
             if (data.length === 0) {
