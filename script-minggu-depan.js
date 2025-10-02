@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">${tugas.judul}</h5>
                                 <p class="card-text flex-grow-1">${tugas.deskripsi}</p>
+                                <p class="card-text flex-grow-1"><a href="${drive.pengumpulan}" target="https://drive.google.com/drive/folders/1-0kDwGKTJskdxKJk3MlDbH6ZFQf7qc7C" rel="noopener noreferrer">Link Pengumpulan</a></p>
                                 <p class="card-deadline mb-0"><strong>Tenggat:</strong> ${tugas.tanggal}</p>
                             </div>
                         </div>
