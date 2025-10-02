@@ -1,3 +1,128 @@
-    <li class="nav-item">
-        <a class="nav-link" href="materi.html" style="color: #5d4037; font-weight: 500; font-size: 1.1rem;">Materi Kuliah</a>
-    </li>
+/* Import font Poppins dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Gaya Umum */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #D7CCC8; /* Warna Coklat Kopi Susu yang lebih lembut */
+}
+
+/* Gaya Header Utama */
+.p-3.mb-4.bg-light.rounded-3 {
+    background-color: rgba(255, 255, 255, 0.7) !important; /* Latar belakang putih semi-transparan */
+    backdrop-filter: blur(10px); /* Efek Kaca Buram */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem !important; /* Sudut lebih bulat (16px) */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    padding: 2.5rem !important; /* Padding lebih besar */
+    color: #4E342E; /* Warna teks coklat tua */
+}
+
+.p-3.mb-4.bg-light.rounded-3 h1 {
+    font-weight: 700;
+    color: #4E342E;
+}
+
+.p-3.mb-4.bg-light.rounded-3 p {
+    font-weight: 400;
+    color: #6D4C41;
+}
+
+/* Tombol Navigasi di Header */
+.btn-outline-secondary {
+    border-color: #8D6E63;
+    color: #8D6E63;
+    font-weight: 500;
+    border-radius: 2rem; /* Bentuk pil */
+    padding: 0.5rem 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #8D6E63;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* --- GAYA KARTU MODERN --- */
+.card-tugas {
+    background: rgba(255, 255, 255, 0.65); /* Latar belakang kaca semi-transparan */
+    backdrop-filter: blur(12px); /* Efek blur lebih kuat dari header */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Border tipis untuk efek 3D */
+    border-radius: 1rem; /* Sudut bulat 16px */
+    box-shadow: 0 8px 32px 0 rgba(109, 76, 65, 0.2); /* Bayangan lembut berwarna coklat */
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border-left: none; /* Menghapus border kiri yang lama */
+}
+
+.card-tugas:hover {
+    transform: translateY(-10px); /* Efek mengangkat lebih tinggi */
+    box-shadow: 0 12px 40px 0 rgba(109, 76, 65, 0.25); /* Bayangan lebih kuat saat hover */
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.card-body {
+    padding: 1.75rem; /* Padding lebih luas */
+}
+
+.card-title {
+    font-weight: 600;
+    color: #4E342E;
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    font-weight: 400;
+    color: #6D4C41;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+/* --- GAYA BARU UNTUK DEADLINE & KATEGORI --- */
+.card-deadline {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #BF360C; /* Merah bata yang lebih elegan */
+    background-color: rgba(255, 235, 238, 0.7);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    display: inline-block;
+}
+
+.badge.bg-secondary {
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: rgba(144, 164, 174, 0.7) !important;
+    color: #263238;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+}
+
+/* Penyesuaian Posisi Tombol */
+.card-body > div:last-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* Mendorong ke bawah */
+}
+
+/* Tombol Aksi */
+.btn {
+    border-radius: 2rem; /* Bentuk pil */
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Spinner Loading */
+.spinner-border {
+    color: #A1887F !important;
