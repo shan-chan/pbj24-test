@@ -1,21 +1,149 @@
+/* Import font Poppins dari Google Fonts */
+/* Baris ini juga sudah ditambahkan di HTML, tapi tidak ada salahnya ada di sini sebagai fallback */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Gaya Umum */
 body {
-    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif; /* Terapkan font Poppins */
+    color: #333; /* Warna teks gelap */
+    line-height: 1.6;
+    background-color: #f0f2f5; /* Background abu-abu muda */
+    
+    /* Background Wayang Coklat Blur */
+    background-image: url('https://i.ibb.co/H26F2jC/wayang-blur.jpg'); /* Contoh URL gambar wayang, GANTI DENGAN GAMBAR ANDA SENDIRI */
+    background-size: cover; /* Pastikan gambar menutupi seluruh area */
+    background-position: center center;
+    background-attachment: fixed; /* Gambar tetap saat scroll */
+    position: relative; /* Diperlukan untuk overlay */
 }
 
+/* Overlay untuk background wayang agar teks tetap terbaca */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(92, 64, 51, 0.7); /* Coklat semi-transparan */
+    backdrop-filter: blur(5px); /* Efek blur */
+    z-index: -1; /* Pastikan di belakang konten */
+}
+
+/* Gaya Navbar */
+.navbar {
+    background-color: rgba(121, 85, 72, 0.9) !important; /* Coklat tua semi-transparan */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #fff !important;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #fff !important;
+    font-weight: 600;
+}
+
+/* Gaya Jumbotron/Hero Section */
+.p-3.mb-4.bg-light.rounded-3 {
+    background-color: rgba(255, 255, 255, 0.9) !important; /* Putih semi-transparan */
+    border-radius: 15px !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px !important;
+    color: #5d4037; /* Warna teks coklat tua */
+}
+
+.p-3.mb-4.bg-light.rounded-3 h1 {
+    font-weight: 700;
+    color: #5d4037;
+    margin-bottom: 10px;
+}
+
+.p-3.mb-4.bg-light.rounded-3 p {
+    font-weight: 400;
+    color: #795548;
+}
+
+/* Gaya Kartu Tugas */
 .card-tugas {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
-    transition: 0.3s;
-    border: none;
-    border-left: 5px solid #0d6efd; /* Memberi aksen biru di kiri kartu */
+    background-color: rgba(255, 255, 255, 0.95); /* Sedikit lebih solid */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-in-out;
+    border-left: 6px solid #8d6e63; /* Aksen coklat di kiri kartu */
+    overflow: hidden; /* Pastikan konten tidak keluar */
 }
 
 .card-tugas:hover {
-    transform: translateY(-5px); /* Sedikit efek mengangkat saat kursor di atas */
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: translateY(-8px) scale(1.02); /* Efek mengangkat lebih kuat */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-left-color: #a1887f; /* Warna aksen berubah sedikit saat hover */
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-title {
+    font-weight: 600;
+    color: #5d4037; /* Warna judul coklat tua */
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-weight: 300;
+    color: #6d4c41; /* Warna deskripsi coklat */
+    font-size: 0.95rem;
+    margin-bottom: 15px;
 }
 
 .card-deadline {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #e57373; /* Merah muda untuk tenggat waktu */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: auto; /* Dorong ke bawah */
+}
+
+.btn-success {
+    background-color: #66bb6a; /* Hijau yang lebih lembut */
+    border-color: #66bb6a;
     font-weight: 500;
-    color: #dc3545; /* Merah untuk tenggat waktu */
+    border-radius: 8px;
+    padding: 8px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #4CAF50; /* Hijau lebih gelap saat hover */
+    border-color: #4CAF50;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+/* Gaya Spinner Loading */
+.spinner-border {
+    color: #a1887f !important; /* Warna spinner disesuaikan dengan tema */
+    margin-top: 50px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .p-3.mb-4.bg-light.rounded-3 {
+        padding: 20px !important;
+    }
+    .p-3.mb-4.bg-light.rounded-3 h1 {
+        font-size: 1.8rem;
+    }
+    .p-3.mb-4.bg-light.rounded-3 p {
+        font-size: 0.95rem;
+    }
 }
