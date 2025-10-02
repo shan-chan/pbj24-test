@@ -19,13 +19,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             data.forEach(tugas => {
+                // Buat variabel kosong untuk menampung HTML tombol
+                let linkButtonHTML = '';
+
+                // Cek apakah properti 'link' ada di data tugas
+                if (tugas.link && tugas.link.trim() !== '') {
+                    // Jika ada, isi variabel dengan HTML untuk tombol
+                    linkButtonHTML = `
+                        <a href="${tugas.link}" class="btn btn-success btn-sm mt-3" target="_blank" rel="noopener noreferrer">
+                            Kumpulkan Tugas
+                        </a>
+                    `;
+                }
+                
                 const card = `
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div class="card card-tugas h-100">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">${tugas.judul}</h5>
                                 <p class="card-text flex-grow-1">${tugas.deskripsi}</p>
-                                <p class="card-deadline mb-0"><strong>Tenggat:</strong> ${tugas.tanggal}</p>
+                                <div>
+                                    <p class="card-deadline mb-0"><strong>Tenggat:</strong> ${tugas.tanggal}</p>
+                                    ${linkButtonHTML}
+                                </div>
                             </div>
                         </div>
                     </div>
