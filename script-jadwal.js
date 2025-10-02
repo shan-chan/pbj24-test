@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const headers = Object.keys(data[0]);
         
-        // Buat baris header
         let headerRow = '<tr>';
         headers.forEach(header => {
             headerRow += `<th>${header}</th>`;
@@ -37,12 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
         headerRow += '</tr>';
         thead.innerHTML = headerRow;
 
-        // Isi baris data
         data.forEach(rowData => {
             let row = '<tr>';
             headers.forEach(header => {
-                // Ganti '-' dengan string kosong agar sel terlihat kosong
-                const cellData = rowData[header] === '-' ? '' : rowData[header];
+                let cellData = rowData[header] === '-' ? '' : rowData[header];
+                // Mengganti koma dengan tag <br> agar nama turun ke bawah
+                cellData = cellData.replace(/, /g, '<br>');
                 row += `<td>${cellData}</td>`;
             });
             row += '</tr>';
@@ -50,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Mengambil kedua file CSV secara bersamaan
+    // Mengambil kedua file CSV
     Promise.all([
         fetch('data/jadwal-kuliah.csv').then(response => response.text()),
         fetch('data/jadwal-piket.csv').then(response => response.text())
@@ -60,7 +59,49 @@ document.addEventListener('DOMContentLoaded', () => {
         const dataPiket = parseCSV(csvPiket);
 
         renderTable(dataKuliah, 'jadwal-kuliah-head', 'jadwal-kuliah-body');
-        renderTable(dataPiket, 'jadwal-piket-head', 'jadwal-piket-body');
+        
+        // --- PERUBAHAN UNTUK JADWAL PIKET ---
+        // Karena jadwal piket hanya 2 baris, kita buat tabelnya secara manual
+        // agar lebih sesuai dengan gambar.
+        const piketContainer = document.getElementById('jadwal-piket-container');
+        let piketHTML = `
+            <h2 class="mb-3">Jadwal Piket</h2>
+            <h4 class="mt-4">Minggu Pertama & Ketiga</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr><th>Selasa</th><th>Rabu</th><th>Kamis</th><th>Jumat</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>${dataPiket[0].Selasa.replace(/, /g, '<br>')}</td>
+                            <td>${dataPiket[0].Rabu.replace(/, /g, '<br>')}</td>
+                            <td>${dataPiket[0].Kamis.replace(/, /g, '<br>')}</td>
+                            <td>${dataPiket[0].Jumat.replace(/, /g, '<br>')}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 class="mt-4">Minggu Kedua & Keempat</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr><th>Selasa</th><th>Rabu</th><th>Kamis</th><th>Jumat</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>${dataPiket[1].Selasa.replace(/, /g, '<br>')}</td>
+                            <td>${dataPiket[1].Rabu.replace(/, /g, '<br>')}</td>
+                            <td>${dataPiket[1].Kamis.replace(/, /g, '<br>')}</td>
+                            <td>${dataPiket[1].Jumat.replace(/, /g, '<br>')}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        `;
+        piketContainer.innerHTML = piketHTML;
+
     })
     .catch(error => {
         console.error('Error fetching data:', error);
