@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (tugas.link && tugas.link.trim() !== '') {
                     // 3. Jika ada, isi variabel dengan HTML untuk tombol
                     linkButtonHTML = `
-                        <a href="${tugas.link}" class="btn btn-success btn-sm mt-3" target="https://drive.google.com/drive/folders/1-0kDwGKTJskdxKJk3MlDbH6ZFQf7qc7C" rel="noopener noreferrer">
+                        <a href="${tugas.link}" class="btn btn-success btn-sm mt-3" target="_blank" rel="noopener noreferrer">
                             Kumpulkan Tugas
                         </a>
                     `;
