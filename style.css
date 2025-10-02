@@ -156,3 +156,11 @@ body {
         font-size: 1.1rem; /* Kecilkan font judul kartu */
     }
 }
+
+/* Gaya untuk Header Tabel */
+.table thead th {
+    background-color: #A1887F; /* Coklat yang serasi */
+    color: #fff;
+    font-weight: 600;
+    vertical-align: middle;
+}
